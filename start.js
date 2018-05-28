@@ -1,1 +1,1 @@
-console.log('hi, this is Chao. I want a job. And Darryl.');
+console.log('hi, this is Chao. I want a job. And Darryl. Also a lot of money');
