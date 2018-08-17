@@ -61,6 +61,20 @@ class BST {
     this.dfsRec(node.left);
     this.dfsRec(node.right);
   }
+
+  bfs() {
+    let queue = [this.root];
+    while (queue.length) {
+      let front = queue.shift();
+      console.log(front.val);
+      if (front.left) {
+        queue.push(front.left);
+      }
+      if (front.right) {
+        queue.push(front.right);
+      }
+    }
+  }
 }
 
 const tree = new BST();
@@ -69,5 +83,7 @@ tree.insert(5);
 tree.insert(15);
 tree.insert(16);
 tree.insert(13);
+tree.insert(4);
+tree.insert(7);
 // tree.inorder();
-tree.dfs();
+tree.bfs();
