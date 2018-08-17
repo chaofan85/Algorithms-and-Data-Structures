@@ -70,4 +70,4 @@ tree.insert(15);
 tree.insert(16);
 tree.insert(13);
 // tree.inorder();
-tree.dfsRec();
+tree.dfs();
