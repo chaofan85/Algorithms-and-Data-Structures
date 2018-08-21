@@ -86,4 +86,4 @@ tree.insert(13);
 tree.insert(4);
 tree.insert(7);
 // tree.inorder();
-tree.bfs();
+tree.inorder();
