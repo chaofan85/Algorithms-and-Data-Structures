@@ -35,4 +35,16 @@ function change(amount, coins, memo = {}) {
   return total;
 }
 
-console.log(change(1000, [1, 2, 5]));
+function coinChange(coins, amount, index = 0) {
+  if (amount === 0) return 1;
+  if (amount < 0) return 0;
+
+  let result = 0;
+  for (let i = index; i < coins.length; i++) {
+    result += coinChange(coins, amount - coins[i], i);
+  }
+
+  return result;
+}
+
+console.log(change(4, [1, 2]));

@@ -33,8 +33,7 @@
 // }
 
 function coinChange(coins, amount, memo = {}) {
-  if (amount < 1) return -1;
-  if (amount === 0) return 0;
+  if (amount < 1) return 0;
   if (amount in memo) return memo[amount];
 
   let min = -1;
