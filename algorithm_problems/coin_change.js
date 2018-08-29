@@ -32,45 +32,46 @@
 //   }
 // }
 
-function coinChange(coins, amount, memo = {}) {
-  if (amount < 1) return 0;
-  if (amount in memo) return memo[amount];
-
-  let min = -1;
-  for (let i = 0; i < coins.length; i++) {
-    if (coins[i] > amount) continue;
-
-    let val = coinChange(coins, amount - coins[i], memo);
-
-    // if (val < min) min = val;
-    if (min === -1) {
-      min = val;
-    } else {
-      if (val < min) min = val;
-    }
-  }
-
-  min = min === -1 ? min : min + 1;
-
-  memo[amount] = min;
-
-  return min;
-}
-
-// function coinChange(coins, amount) {
-//   let max = amount + 1;
-//   let arr = new Array(amount + 1);
-//   arr.fill(max);
-//   arr[0] = 0;
-//   for (let i = 1; i <= amount; i++) {
-//     for (let j = 0; j < coins.length; j++) {
-//       if (coins[j] <= i) {
-//         arr[i] = Math.min(arr[i], arr[i - coins[j]] + 1);
-//       }
+// function coinChange(coins, amount, memo = {}) {
+//   if (amount < 1) return 0;
+//   if (amount in memo) return memo[amount];
+//
+//   let min = -1;
+//   for (let i = 0; i < coins.length; i++) {
+//     if (coins[i] > amount) continue;
+//
+//     let val = coinChange(coins, amount - coins[i], memo);
+//
+//     // if (val < min) min = val;
+//     if (min === -1) {
+//       min = val;
+//     } else {
+//       if (val < min) min = val;
 //     }
 //   }
 //
-//   return arr[amount] > amount ? -1 : arr[amount];
+//   min = min === -1 ? min : min + 1;
+//
+//   memo[amount] = min;
+//
+//   return min;
 // }
 
-console.log(coinChange([186, 419, 83, 408], 6249));
+function coinChange(coins, amount) {
+  let max = amount + 1;
+  let arr = new Array(amount + 1);
+
+  arr.fill(max);
+  arr[0] = 0;
+  for (let i = 1; i <= amount; i++) {
+    for (let j = 0; j < coins.length; j++) {
+      if (coins[j] <= i) {
+        arr[i] = Math.min(arr[i], arr[i - coins[j]] + 1);
+      }
+    }
+  }
+
+  return arr[amount] > amount ? -1 : arr[amount];
+}
+
+console.log(coinChange([1, 4, 6, 8, 9], 25));
