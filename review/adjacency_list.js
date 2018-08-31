@@ -9,6 +9,20 @@ let neighbors = {
   g: new Set()
 };
 
+function inverse(neighbors) {
+  let inverseObj = {};
+
+  // Object.keys(neighbors).forEach(node => (inverseObj[node] = new Set()));
+
+  for (let parent in neighbors) {
+    for (let child of neighbors[parent]) {
+      inverseObj[child].add(parent);
+    }
+  }
+}
+
+function topSort(neighbors) {}
+
 function df(neighbors) {
   let visited = new Set();
   for (let node in neighbors) {
@@ -28,8 +42,3 @@ function _df(neighbors, curr, visited = new Set()) {
 }
 
 df(neighbors);
-
-// Objects, Arrays, etc.. are passed by Reference
-// meaning when you pass it as an arg, you are giving the exact object in memory
-// Primitive types: nums, string, bools.. are pass by Value
-// meaning when you pass it as an arg, you are giving a copy of the value
