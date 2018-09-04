@@ -21,7 +21,23 @@ function inverse(neighbors) {
   }
 }
 
-function topSort(neighbors) {}
+function topSort(neighbors) {
+  let parents = inverse(neighbors);
+  let visited = new Set();
+  let unvisited = new Set(Object.keys(parents));
+  let n = Object.keys(parents).length;
+  let order = [];
+
+  while (unvisited.length) {
+    for (let node in unvisited) {
+      if (Array.from(parents[node]).every(p => visited.has(p))) {
+        visited.add(node);
+        unvisited.delete(node);
+        order.push(node);
+      }
+    }
+  }
+}
 
 function df(neighbors) {
   let visited = new Set();
