@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/
+// https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
 
 var longestIncreasingPath = function(matrix, memo = {}) {
   let longest = 0;
