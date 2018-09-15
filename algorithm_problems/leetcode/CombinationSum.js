@@ -39,26 +39,29 @@ var combinationSum2 = function(candidates, target) {
   return allCombs;
 };
 
-function combinationSum3(candidates, target, currComb = []) {
-  let candSet = new Set(candidates);
-  let combs = [];
+function combinationSum3(candidates, target) {
+  candidates = candidates.sort((a, b) => a - b);
 
-  if (target < 0) {
-    currComb = [];
+  let result = [];
+  let comb = [];
+
+  getCombs(candidates, target, result, comb, 0);
+
+  return result;
+}
+
+function getCombs(candidates, target, result, comb, begin) {
+  if (target === 0) {
+    result.push(comb.slice(0));
     return;
   }
-  if (candSet.has(target)) {
-    currComb.push(target);
-    combs.push(currComb);
-    currComb = [];
+  for (let i = begin; i < candidates.length && target >= candidates[i]; i++) {
+    console.log(target, candidates[i]);
+    comb.push(candidates[i]);
+    // console.log(comb);
+    getCombs(candidates, target - candidates[i], result, comb, i);
+    comb.pop();
   }
-  candidates.forEach(cand => {
-    currComb.push(cand);
-    console.log(currComb);
-    combinationSum3(candidates, target - cand, currComb);
-  });
-
-  return combs;
 }
 
 console.log(combinationSum3([2, 3, 6, 7], 7));
