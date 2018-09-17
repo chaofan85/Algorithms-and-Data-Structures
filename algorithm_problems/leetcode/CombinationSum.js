@@ -58,7 +58,6 @@ function getCombs(candidates, target, result, comb, begin) {
   for (let i = begin; i < candidates.length && target >= candidates[i]; i++) {
     console.log(target, candidates[i]);
     comb.push(candidates[i]);
-    // console.log(comb);
     getCombs(candidates, target - candidates[i], result, comb, i);
     comb.pop();
   }
