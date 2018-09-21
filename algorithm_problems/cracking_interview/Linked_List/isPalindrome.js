@@ -58,4 +58,34 @@ function isPalindrome(head) {
   return true;
 }
 
-console.log(isPalindrome(a));
+function isPalindrome2(head) {
+  if (!head || !head.next) return true;
+  if (!head.next.next) return head.val === head.next.val;
+
+  let runner1 = head,
+    runner2 = head,
+    helper1 = head.next,
+    helper2 = helper1.next;
+  while (runner1.next.next) {
+    runner1 = runner1.next.next;
+    helper1.next = runner2;
+    runner2 = helper1;
+    helper1 = helper2;
+
+    helper2 = helper2.next;
+    if (!runner1.next) break;
+  }
+
+  if (!runner1.next) runner2 = runner2.next;
+  runner1 = helper1;
+
+  while (runner1) {
+    if (runner1.val !== runner2.val) return false;
+    runner1 = runner1.next;
+    runner2 = runner2.next;
+  }
+
+  return true;
+}
+
+console.log(isPalindrome2(a));
