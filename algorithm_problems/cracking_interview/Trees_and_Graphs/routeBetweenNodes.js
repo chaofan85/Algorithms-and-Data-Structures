@@ -23,16 +23,14 @@ function findRoute(graph, start, end, visited = new Set()) {
   if (start === end) return true;
   if (!start.neighbors.length) return false;
 
-  let found = false;
   visited.add(start);
 
   for (let i = 0; i < start.neighbors.length; i++) {
-    if (start.neighbors[i] === end) return true;
     if (!visited.has(start.neighbors[i])) {
-      if (findRoute(graph, start.neighbors[i], end, visited)) found = true;
+      if (findRoute(graph, start.neighbors[i], end, visited)) return true;
     }
   }
-  return found;
+  return false;
 }
 
-console.log(findRoute(nodes, d, a));
+console.log(findRoute(nodes, d, f));
