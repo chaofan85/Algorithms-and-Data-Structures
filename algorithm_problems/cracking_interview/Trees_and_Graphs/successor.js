@@ -26,12 +26,13 @@ e.parent = f;
 f.right = g;
 g.parent = f;
 
-function successor(node, visited = new Set()) {
+function successor(node) {
   if (!node) return null;
 
   let root = findRoot(node);
-  // console.log(root);
-  return inOrder(root, node);
+  let result = inOrder(root, node) ? inOrder(root, node)[1] : null;
+  console.log(result ? result.val : null);
+  return result;
 }
 
 function findRoot(node) {
@@ -43,7 +44,9 @@ function findRoot(node) {
 
 function inOrder(root, node, temp = []) {
   if (!root) return;
-  if (temp.length === 2) return temp[1];
+  if (temp.length === 2) {
+    return temp;
+  }
 
   inOrder(root.left, node, temp);
   if (root === node || temp.length) temp.push(root);
@@ -52,4 +55,10 @@ function inOrder(root, node, temp = []) {
   return temp;
 }
 
-console.log(successor(g.val));
+successor(a);
+successor(b);
+successor(c);
+successor(d);
+successor(e);
+successor(f);
+successor(g);
