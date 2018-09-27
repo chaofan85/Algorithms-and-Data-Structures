@@ -20,4 +20,14 @@ d.right = f;
 f.left = e;
 f.right = g;
 
-function isBST(root) {}
+function isBST(root, min = null, max = null) {
+  if (!root) return true;
+  if ((min !== null && root.val <= min) || (max !== null && root.val >= max))
+    return false;
+  if (!isBST(root.left, min, root.val) || !isBST(root.right, root.val, max))
+    return false;
+
+  return true;
+}
+
+console.log(isBST(d));
