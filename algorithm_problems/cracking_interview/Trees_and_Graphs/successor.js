@@ -55,10 +55,33 @@ function inOrder(root, node, temp = []) {
   return temp;
 }
 
-successor(a);
-successor(b);
-successor(c);
-successor(d);
-successor(e);
-successor(f);
-successor(g);
+function successor2(node) {
+  if (!node) return null;
+
+  if (node.right) {
+    return leftMostChild(node.right);
+  } else {
+    let p1 = node;
+    let p2 = node.parent;
+    while (p2 && p2.left !== p1) {
+      p1 = p2;
+      p2 = p2.parent;
+    }
+    return p2;
+  }
+}
+
+function leftMostChild(node) {
+  if (!node) return null;
+  while (node.left) node = node.left;
+
+  return node;
+}
+
+console.log(successor2(a));
+console.log(successor2(b));
+console.log(successor2(c));
+console.log(successor2(d));
+console.log(successor2(e));
+console.log(successor2(f));
+console.log(successor2(g));
