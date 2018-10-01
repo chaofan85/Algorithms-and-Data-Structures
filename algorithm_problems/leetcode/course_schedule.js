@@ -37,21 +37,6 @@ function getPreList(prereqs) {
   return preList;
 }
 
-// var canFinish = function(numCourses, prerequisites) {
-//   let parents = getPreList(prerequisites);
-//   let queue = [];
-//   let visited = new Set([]);
-//   let curr = prerequisites[0];
-//   let pre = prerequisites[1];
-//
-//   while (visited.size < numCourses) {
-//     for (let i = 0; i < prerequisites.length; i++) {
-//       if (!parents[curr].length) {
-//
-//       }
-//     }
-//   }
-//
-// };
+function canFinish2(numCourses, prerequisites) {}
 
 console.log(canFinish(2, [[0, 1]]));
