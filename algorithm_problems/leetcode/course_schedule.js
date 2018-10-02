@@ -37,6 +37,82 @@ function getPreList(prereqs) {
   return preList;
 }
 
-function canFinish2(numCourses, prerequisites) {}
+function canFinish2(numCourses, prerequisites) {
+  if (!prerequisites.length) return true;
+  let preList = getPreList2(numCourses, prerequisites);
+  let result = 0;
+  let processPre = [];
 
-console.log(canFinish(2, [[0, 1]]));
+  for (let course in preList) {
+    if (preList[course] === 0) processPre.push(course);
+  }
+
+  while (processPre.length) {
+    let pre = Number(processPre.shift());
+    for (let i = 0; i < prerequisites.length; i++) {
+      if (prerequisites[i][1] === pre) {
+        if (--preList[prerequisites[i][0]] === 0) {
+          processPre.push(prerequisites[i][0]);
+        }
+      }
+    }
+    result++;
+  }
+  return result === numCourses;
+}
+
+function getPreList2(num, prereqs) {
+  let preList = {};
+
+  for (let i = 0; i < num; i++) preList[i] = 0;
+  for (let i = 0; i < prereqs.length; i++) preList[prereqs[i][0]]++;
+
+  return preList;
+}
+
+// ================== Another One ==================
+function canFinish3(numCourses, prerequisites) {
+  let preList = getPreList3(numCourses, prerequisites);
+  let adjacentList = getAdjacentList(prerequisites);
+  let counter = 0;
+  let queue = [];
+  for (let i = 0; i < preList.length; i++) {
+    if (preList[i] === 0) queue.push(i);
+  }
+  while (queue.length) {
+    let pre = queue.shift();
+    counter++;
+    if (adjacentList[pre] !== undefined) {
+      for (let i = 0; i < adjacentList[pre].length; i++) {
+        preList[adjacentList[pre][i]]--;
+        if (preList[adjacentList[pre][i]] === 0) {
+          queue.push(adjacentList[pre][i]);
+        }
+      }
+    }
+  }
+
+  return counter === numCourses;
+}
+
+function getPreList3(num, prereqs) {
+  let preList = new Array(num);
+  preList.fill(0);
+  for (let i = 0; i < prereqs.length; i++) preList[prereqs[i][0]]++;
+  return preList;
+}
+
+function getAdjacentList(prerequisites) {
+  let list = {};
+  for (let i = 0; i < prerequisites.length; i++) {
+    if (list[prerequisites[i][1]] === undefined) {
+      list[prerequisites[i][1]] = [prerequisites[i][0]];
+    } else {
+      list[prerequisites[i][1]].push(prerequisites[i][0]);
+    }
+  }
+
+  return list;
+}
+
+console.log(canFinish3(3, [[1, 0], [2, 1]]));
