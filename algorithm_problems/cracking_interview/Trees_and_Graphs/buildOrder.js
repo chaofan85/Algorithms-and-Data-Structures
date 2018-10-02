@@ -49,8 +49,82 @@ function removeDepend(finished, depends) {
   return numOfOp !== 0;
 }
 
+// ===================== Another Solution =====================
+function buildOrder2(projects, depends) {
+  let preList = getPrelist(projects, depends);
+  let adjacentList = getAdjacentList(projects, depends);
+  let order = [];
+  let queue = [];
+
+  for (let project in preList) {
+    if (preList[project] === 0) {
+      queue.push(project);
+    }
+  }
+
+  // console.log(preList, adjacentList);
+
+  while (queue.length) {
+    let pre = queue.shift();
+    order.push(pre);
+
+    for (let i = 0; i < adjacentList[pre].length; i++) {
+      if (--preList[adjacentList[pre][i]] === 0) {
+        queue.push(adjacentList[pre][i]);
+      }
+    }
+  }
+
+  return order.length === projects.length ? order : "Can't finish";
+}
+
+function getPrelist(projects, depends) {
+  let list = {};
+
+  for (let i = 0; i < projects.length; i++) {
+    list[projects[i]] = 0;
+  }
+  for (let i = 0; i < depends.length; i++) {
+    list[depends[i][1]]++;
+  }
+
+  return list;
+}
+
+function getAdjacentList(projects, depends) {
+  let list = {};
+
+  for (let i = 0; i < projects.length; i++) {
+    list[projects[i]] = [];
+  }
+  for (let i = 0; i < depends.length; i++) {
+    list[depends[i][0]].push(depends[i][1]);
+  }
+
+  return list;
+}
+
 console.log(
   buildOrder(
+    ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"],
+    [
+      ["a", "d"],
+      ["f", "b"],
+      ["b", "d"],
+      ["f", "a"],
+      ["d", "c"],
+      ["e", "f"],
+      ["i", "k"],
+      ["i", "a"],
+      ["k", "a"],
+      ["h", "d"],
+      ["k", "h"]
+    ]
+  )
+);
+
+console.log(
+  buildOrder2(
     ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"],
     [
       ["a", "d"],

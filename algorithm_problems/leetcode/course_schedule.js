@@ -37,6 +37,8 @@ function getPreList(prereqs) {
   return preList;
 }
 
+// ================== Another One ==================
+
 function canFinish2(numCourses, prerequisites) {
   if (!prerequisites.length) return true;
   let preList = getPreList2(numCourses, prerequisites);
