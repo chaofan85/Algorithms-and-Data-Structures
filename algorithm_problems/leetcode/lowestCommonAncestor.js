@@ -12,8 +12,8 @@ function lowestCommonAncestor(root, p, q) {
   }
 
   if (combined.has(p) && combined.has(q)) return root;
-  if (root.val === p.val && combined.has(q)) return root;
-  if (root.val === q.val && combined.has(p)) return root;
+  if (root === p && combined.has(q)) return root;
+  if (root === q && combined.has(p)) return root;
 
   combined.add(root);
   return combined;
