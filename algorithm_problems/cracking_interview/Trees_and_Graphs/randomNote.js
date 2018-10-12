@@ -41,7 +41,9 @@ class BinarySearchTree {
     if (node.val === val) return node;
   }
 
-  delete(val, node = this.root) {}
+  delete(val) {
+    let node = this.find(val);
+  }
 
   inOrder(node = this.root) {
     if (!node) return;
