@@ -21,4 +21,4 @@ function tripleStep(num, cache = {}) {
   return prev1 + prev2 + prev3;
 }
 
-console.log(tripleStep(100));
+console.log(tripleStep(2000));
