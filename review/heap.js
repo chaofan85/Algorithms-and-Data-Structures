@@ -27,41 +27,25 @@ class MaxHeap {
   }
 
   siftDown(idx) {
-    if (this.array.length <= 3) {
-      if (this.array[1] < this.array[2]) {
-        [this.array[1], this.array[2]] = [this.array[2], this.array[1]];
-      }
-      return;
+    let ary = this.array;
+    let leftIdx = 2 * idx;
+    let rightIdx = 2 * idx + 1;
+    let leftVal = ary[leftIdx];
+    let rightVal = ary[rightIdx];
+
+    if (leftVal === undefined) leftVal = -Infinity;
+    if (rightVal === undefined) rightVal = -Infinity;
+
+    if (ary[idx] > leftVal && ary[idx] > rightVal) return;
+
+    if (leftVal < rightVal) {
+      var swapIdx = rightIdx;
+    } else {
+      swapIdx = leftIdx;
     }
 
-    if (
-      this.array[idx] < this.array[2 * idx] ||
-      this.array[idx] < this.array[2 * idx + 1]
-    ) {
-      if (this.array[2 * idx] < this.array[2 * idx + 1]) {
-        while (
-          this.array[idx] < this.array[2 * idx + 1] &&
-          2 * idx + 1 <= this.array.length - 1
-        ) {
-          [this.array[idx], this.array[2 * idx + 1]] = [
-            this.array[2 * idx + 1],
-            this.array[idx]
-          ];
-          idx = 2 * idx + 1;
-        }
-      } else {
-        while (
-          this.array[idx] < this.array[2 * idx] &&
-          2 * idx <= this.array.length - 1
-        ) {
-          [this.array[idx], this.array[2 * idx]] = [
-            this.array[2 * idx],
-            this.array[idx]
-          ];
-          idx *= 2;
-        }
-      }
-    }
+    [ary[idx], ary[swapIdx]] = [ary[swapIdx], ary[idx]];
+    this.siftDown(swapIdx);
   }
 
   print() {
@@ -71,16 +55,17 @@ class MaxHeap {
 
 let heap = new MaxHeap();
 
-heap.insert(50);
-heap.insert(75);
-heap.insert(100);
-heap.insert(60);
-heap.insert(45);
-heap.insert(62);
 heap.insert(1);
+heap.insert(2);
+heap.insert(3);
+heap.insert(4);
+heap.insert(5);
+heap.insert(6);
+heap.insert(7);
+heap.insert(8);
 
 heap.print();
 
-heap.delete();
-
-heap.print();
+// heap.delete();
+//
+// heap.print();
