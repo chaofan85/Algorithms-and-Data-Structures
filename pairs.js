@@ -25,4 +25,4 @@ function shuffle(array) {
   return array;
 }
 
-pairs(["a", "b", "c", "d", "e", "f", "g"]);
+pairs([]);
