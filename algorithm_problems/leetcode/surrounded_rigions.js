@@ -27,7 +27,7 @@ var solve = function(board) {
 
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[0].length; j++) {
-      if (board[i][j] === "#") board[i][j] = "O";
+      if (board[i][j] === "*") board[i][j] = "O";
     }
   }
 };
@@ -40,9 +40,9 @@ function DFS(matrix, row, col) {
     col > matrix[0].length - 1
   )
     return;
-  if (matrix[row][col] === "X" || matrix[row][col] === "#") return;
+  if (matrix[row][col] === "X" || matrix[row][col] === "*") return;
 
-  matrix[row][col] = "#";
+  matrix[row][col] = "*";
   DFS(matrix, row + 1, col);
   DFS(matrix, row - 1, col);
   DFS(matrix, row, col + 1);
