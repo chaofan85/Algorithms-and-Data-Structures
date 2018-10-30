@@ -24,16 +24,29 @@ cost will have a length in the range [2, 1000].
 Every cost[i] will be an integer in the range [0, 999].
 */
 
-function minCostClimbingStairs1(nums) {
-  return helper(nums, nums.length - 1);
+function minCostClimbingStairs1(cost) {
+  cost.push(0);
+  let memo = {};
+  return helper(cost, cost.length - 1, memo);
 }
 
-function helper(nums, i) {
-  // if (i < 2) return nums[i];
+function helper(nums, i, memo) {
   if (i < 0) return 0;
-  let lalala = Math.max(helper(nums, i - 2) + nums[i], helper(nums, i - 1));
-  console.log(lalala);
-  return lalala;
+  // if (i < 0) return 0;
+  if (memo[i]) return memo[i];
+  let result =
+    Math.min(helper(nums, i - 1, memo), helper(nums, i - 2, memo)) + nums[i];
+  // console.log(result);
+  memo[i] = result;
+  return result;
 }
 
-console.log(minCostClimbingStairs1([10, 15, 20, 25]));
+function minCostClimbingStairs2(cost) {
+  for (let i = 2; i < cost.length; i++) {
+    cost[i] += Math.min(cost[i - 1], cost[i - 2]);
+  }
+  return Math.min(cost[cost.length - 1], cost[cost.length - 2]);
+}
+
+console.log(minCostClimbingStairs2([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]));
+console.log(minCostClimbingStairs2([10, 15, 1, 25]));
