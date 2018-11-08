@@ -1,5 +1,4 @@
 function mergeSort(arr) {
-  // console.log(arr);
   if (arr.length < 2) return arr;
   let mid = Math.floor(arr.length / 2);
   let left = mergeSort(arr.slice(0, mid));
