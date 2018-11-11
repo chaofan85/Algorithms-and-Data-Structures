@@ -1,47 +1,51 @@
 // https://leetcode.com/problems/maximal-rectangle/description/
+
 var maximalRectangle = function(matrix) {
+  if (!matrix.length || !matrix[0].length) return 0;
+  let colLen = matrix[0].length;
+  let rowLen = matrix.length;
+
+  let h = new Array(colLen + 1);
+  h.fill(0);
   let max = 0;
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[0].length; j++) {
-      if (matrix[i][j] !== "0") search(matrix, i, j);
-    }
-  }
-  function search(matrix, row, col) {
-    let rows = 0;
-    let stops = [];
-    let i = row;
-    let j = col;
-    while (i < matrix.length && matrix[i][j] === "1") {
-      let counter = 0;
-      while (j < matrix[0].length && matrix[i][j] === "1") {
-        counter++;
-        console.log(row, col, i, j);
-        j++;
-        if (j === matrix[0].length || matrix[i][j] === "0") {
-          console.log(i, j);
-          stops.push(counter);
-        }
+
+  for (let row = 0; row < rowLen; row++) {
+    let stack = [];
+    for (let i = 0; i < colLen + 1; i++) {
+      if (i < colLen) {
+        h[i] = matrix[row][i] === "1" ? h[i] + 1 : 0;
       }
-      rows++;
-      i++;
-      j = col;
+
+      if (!stack.length || h[stack[stack.length - 1]] <= h[i]) {
+        stack.push(i);
+        console.log(stack, h);
+      } else {
+        while (stack.length && h[i] < h[stack[stack.length - 1]]) {
+          let top = stack.pop();
+          let area =
+            h[top] * (!stack.length ? i : i - stack[stack.length - 1] - 1);
+          max = Math.max(area, max);
+        }
+        stack.push(i);
+      }
     }
-
-    let area = rows * Math.min(...stops);
-    console.log(rows, stops);
-    // if (area > max) console.log(stops, rows, area);
-    max = Math.max(max, area);
-    console.log("------");
   }
-
   return max;
 };
 
 console.log(
   maximalRectangle([
     ["1", "0", "1", "0", "0"],
-    ["1", "0", "1", "0", "1"],
+    ["1", "0", "1", "1", "1"],
     ["1", "1", "1", "1", "1"],
     ["1", "0", "0", "1", "0"]
   ])
 );
+// console.log(
+//   maximalRectangle([
+//     ["1", "0", "1", "0", "0"],
+//     ["1", "0", "1", "0", "1"],
+//     ["1", "1", "1", "1", "1"],
+//     ["1", "0", "0", "1", "0"]
+//   ])
+// );
