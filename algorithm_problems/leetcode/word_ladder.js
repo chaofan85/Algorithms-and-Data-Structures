@@ -43,42 +43,87 @@ Explanation: The endWord "cog" is not in wordList,
 therefore no possible transformation.
 */
 
+// var ladderLength = function(beginWord, endWord, wordList) {
+//   if (!wordList.includes(endWord)) return false;
+//   if (!wordList.includes(beginWord)) wordList.push(beginWord);
+//
+//   let length = Infinity;
+//   let list = {};
+//
+//   for (let i = 0; i < wordList.length; i++) {
+//     list[wordList[i]] = new Set();
+//     for (let j = 0; j < wordList.length; j++) {
+//       if (oneDiff(wordList[i], wordList[j])) list[wordList[i]].add(wordList[j]);
+//     }
+//   }
+//
+//   function getLength(start, end, visited = new Set(), step = 1, path = []) {
+//     if (start === end) console.log(path);
+//     if (start === end) {
+//       length = Math.min(length, step);
+//     }
+//     let neighbors = list[start];
+//
+//     for (let neighbor of neighbors) {
+//       if (!visited.has(neighbor)) {
+//         let copy = new Set(visited);
+//         copy.add(start);
+//         let pathCopy = path.slice(0);
+//         pathCopy.push(start);
+//         getLength(neighbor, end, copy, step + 1, pathCopy);
+//       } else {
+//         continue;
+//       }
+//     }
+//   }
+//
+//   getLength(beginWord, endWord);
+//
+//   return length === Infinity ? 0 : length;
+// };
+
 var ladderLength = function(beginWord, endWord, wordList) {
-  if (!wordList.includes(endWord)) return false;
+  if (!wordList.includes(endWord)) return 0;
   if (!wordList.includes(beginWord)) wordList.push(beginWord);
-  let length = wordList.length;
+
   let list = {};
-  wordList.push(beginWord);
+
   for (let i = 0; i < wordList.length; i++) {
     list[wordList[i]] = new Set();
     for (let j = 0; j < wordList.length; j++) {
       if (oneDiff(wordList[i], wordList[j])) list[wordList[i]].add(wordList[j]);
     }
   }
-  // console.log(list);
-  function getLength(start, end, hash, step = 1, visited = new Set()) {
-    if (hash[start].has(end)) {
-      length = Math.min(length, step);
-      return;
-    }
-    let neighbors = hash[start];
-    if (start === "cet") {
-      // console.log(start, neighbors);
-    }
-    if (neighbors.size === 0) return;
-    visited.add(start);
 
+  function getLength(start, end, visited = new Set(), memo = {}) {
+    if (start === end) {
+      memo[start] = 1;
+      return 1;
+    }
+    if (!list[start].size) {
+      memo[start] = Infinity;
+      return Infinity;
+    }
+    if (memo[start] !== undefined) return memo[start];
+
+    let neighbors = list[start];
+    let moves = [];
     for (let neighbor of neighbors) {
+      if (memo[neighbor] === 1) return 2;
       if (!visited.has(neighbor)) {
-        getLength(neighbor, end, hash, step + 1, visited);
+        visited.add(start);
+        moves.push(getLength(neighbor, end, visited, memo));
       }
     }
     visited.delete(start);
+    let min = Math.min(...moves) + 1;
+    memo[start] = min;
+    return min;
   }
-  getLength(beginWord, endWord, list);
-  // let result = getLength(beginWord, endWord, list);
-  // return result === Infinity ? 0 : result;
-  return length;
+
+  let result = getLength(beginWord, endWord);
+
+  return result === Infinity ? 0 : result;
 };
 
 function oneDiff(word1, word2) {
@@ -98,8 +143,17 @@ function oneDiff(word1, word2) {
   return diff;
 }
 
-console.log(oneDiff("dot", "dog"));
-
+// console.log(oneDiff("dot", "dog"));
 console.log(
-  ladderLength("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"])
+  ladderLength("hot", "dog", [
+    "hot",
+    "cog",
+    "dog",
+    "tot",
+    "hog",
+    "hop",
+    "pot",
+    "dot"
+  ])
 );
+console.log(ladderLength());
