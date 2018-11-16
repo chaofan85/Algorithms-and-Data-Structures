@@ -43,45 +43,6 @@ Explanation: The endWord "cog" is not in wordList,
 therefore no possible transformation.
 */
 
-// var ladderLength = function(beginWord, endWord, wordList) {
-//   if (!wordList.includes(endWord)) return false;
-//   if (!wordList.includes(beginWord)) wordList.push(beginWord);
-//
-//   let length = Infinity;
-//   let list = {};
-//
-//   for (let i = 0; i < wordList.length; i++) {
-//     list[wordList[i]] = new Set();
-//     for (let j = 0; j < wordList.length; j++) {
-//       if (oneDiff(wordList[i], wordList[j])) list[wordList[i]].add(wordList[j]);
-//     }
-//   }
-//
-//   function getLength(start, end, visited = new Set(), step = 1, path = []) {
-//     if (start === end) console.log(path);
-//     if (start === end) {
-//       length = Math.min(length, step);
-//     }
-//     let neighbors = list[start];
-//
-//     for (let neighbor of neighbors) {
-//       if (!visited.has(neighbor)) {
-//         let copy = new Set(visited);
-//         copy.add(start);
-//         let pathCopy = path.slice(0);
-//         pathCopy.push(start);
-//         getLength(neighbor, end, copy, step + 1, pathCopy);
-//       } else {
-//         continue;
-//       }
-//     }
-//   }
-//
-//   getLength(beginWord, endWord);
-//
-//   return length === Infinity ? 0 : length;
-// };
-
 var ladderLength = function(beginWord, endWord, wordList) {
   if (!wordList.includes(endWord)) return 0;
   if (!wordList.includes(beginWord)) wordList.push(beginWord);
@@ -156,4 +117,4 @@ console.log(
     "dot"
   ])
 );
-console.log(ladderLength());
+// console.log(ladderLength());
