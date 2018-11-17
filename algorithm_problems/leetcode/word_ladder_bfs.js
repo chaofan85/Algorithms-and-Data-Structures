@@ -47,6 +47,7 @@ var ladderLength = function(beginWord, endWord, wordList) {
   if (!wordList.includes(endWord)) return 0;
   if (!wordList.includes(beginWord)) wordList.push(beginWord);
 
+  let counter = 1;
   let list = {};
   for (let i = 0; i < wordList.length; i++) {
     list[wordList[i]] = new Set();
@@ -55,35 +56,21 @@ var ladderLength = function(beginWord, endWord, wordList) {
     }
   }
 
-  function getLength(start, end, visited = new Set(), memo = {}) {
-    if (start === end) {
-      memo[start] = 1;
-      return 1;
-    }
-    if (!list[start].size) {
-      memo[start] = Infinity;
-      return Infinity;
-    }
-    if (memo[start] !== undefined) return memo[start];
-
-    let neighbors = list[start];
-    let moves = [];
-    for (let neighbor of neighbors) {
-      if (memo[neighbor] === 1) return 2;
-      if (!visited.has(neighbor)) {
-        visited.add(start);
-        moves.push(getLength(neighbor, end, visited, memo));
+  function getLength(start, end, visited = new Set()) {
+    let queue = [[beginWord, 1]];
+    while (queue.length) {
+      let word = queue.shift();
+      visited.add(word[0]);
+      let neighbors = list[word[0]];
+      if (neighbors.has(end)) return word[1] + 1;
+      for (let neighbor of neighbors) {
+        if (!visited.has(neighbor)) queue.push([neighbor, word[1] + 1]);
       }
     }
-    visited.delete(start);
-    let min = Math.min(...moves) + 1;
-    memo[start] = min;
-    return min;
+    return 0;
   }
 
-  let result = getLength(beginWord, endWord);
-
-  return result === Infinity ? 0 : result;
+  return getLength(beginWord, endWord);
 };
 
 function oneDiff(word1, word2) {
@@ -102,18 +89,3 @@ function oneDiff(word1, word2) {
   }
   return diff;
 }
-
-// console.log(oneDiff("dot", "dog"));
-console.log(
-  ladderLength("hot", "dog", [
-    "hot",
-    "cog",
-    "dog",
-    "tot",
-    "hog",
-    "hop",
-    "pot",
-    "dot"
-  ])
-);
-// console.log(ladderLength());
