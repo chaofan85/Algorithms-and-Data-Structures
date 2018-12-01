@@ -85,7 +85,6 @@ function minCut2(s) {
       j++ // even length palindrome
     ) {
       cuts[i + j + 1] = Math.min(cuts[i + j + 1], 1 + cuts[i - j + 1]);
-      console.log(cuts, i, j);
     }
   }
   console.log(cuts);
