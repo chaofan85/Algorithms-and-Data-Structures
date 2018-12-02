@@ -29,6 +29,7 @@ function inOrder(root, vals = []) {
 
   return vals;
 }
+
 function preOrder(root, vals = []) {
   if (!root) return;
 
