@@ -28,26 +28,18 @@ var findLadders = function (beginWord, endWord, wordList) {
     }
 
     let min = getLength(beginWord, endWord);
-    console.log(list)
+    // console.log(list)
     let result = [];
 
     function getSeqs(start, end, visited = new Set(), seq = []) {
-        let queue = [beginWord];
-        while (queue.length) {
-            let word = queue.shift();
-            seq.push(word);
-            console.log(seq);
-            
-            visited.add(word);
-            let neighbors = list[word];
-            if (neighbors.has(end) && seq.length < min) {
-                seq.push(end);
-                result.push(seq);
-            }
-            for (let neighbor of neighbors) {
-                if (!visited.has(neighbor)) queue.push(neighbor);
-            }
-        }
+        if (seq.includes(end)) {
+            result.push(seq.slice(0));
+            return;
+        } 
+        if (seq.length >= min) return;
+
+        
+
 
     }
     getSeqs(beginWord, endWord);
