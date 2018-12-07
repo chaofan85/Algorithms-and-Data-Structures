@@ -30,3 +30,17 @@ var ladderLength = function(beginWord, endWord, wordList) {
 };
 
 console.log(ladderLength("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"]));
+console.log(
+  ladderLength("kiss", "tusk", [
+    "miss",
+    "dusk",
+    "kiss",
+    "musk",
+    "tusk",
+    "diss",
+    "disk",
+    "sang",
+    "ties",
+    "muss"
+  ])
+);
