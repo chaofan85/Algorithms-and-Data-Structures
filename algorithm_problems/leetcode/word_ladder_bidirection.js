@@ -21,11 +21,6 @@ var ladderLength = function(beginWord, endWord, wordList) {
           if (!wordDict.has(newWord)) continue;
           wordDict.delete(newWord);
           wordSet.add(newWord);
-          
-         console.log();
-         
-          
-          
         }
       }
     }
