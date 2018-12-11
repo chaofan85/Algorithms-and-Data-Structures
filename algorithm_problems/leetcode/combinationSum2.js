@@ -2,7 +2,6 @@ var combinationSum2 = function(candidates, target) {
   candidates = candidates.sort((a, b) => a - b);
   if (!candidates.length) return [[]];
   let result = [];
-  let checked = new Set();
   let comb = [];
   function helper(arr,sum = 0) {
     if (sum >= target) {
@@ -10,7 +9,6 @@ var combinationSum2 = function(candidates, target) {
       return;
     }
     for (let i = 0; i < arr.length && target >= arr[0]; i++) {
-      // if (!checked.has(arr[i])) {
       if (arr[i] !== arr[i-1]) {
         comb.push(arr[i]);
         sum += arr[i];
@@ -18,8 +16,6 @@ var combinationSum2 = function(candidates, target) {
         let last = comb.pop();
         sum -= last;
       }
-      // }
-      // checked.add(arr[i]);
     }
   }
   helper(candidates);
