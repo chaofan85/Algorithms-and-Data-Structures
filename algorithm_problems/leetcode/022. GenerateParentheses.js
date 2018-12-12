@@ -1,4 +1,4 @@
-// // https://leetcode.com/problems/generate-parentheses/description/
+// https://leetcode.com/problems/generate-parentheses/description/
 
 var generateParenthesis = function(n) {
   if (n === 1) return ["()"];
@@ -8,9 +8,11 @@ var generateParenthesis = function(n) {
   let combinations = [];
   prevComb.forEach(comb => {
     for (let i = 0; i < comb.length; i++) {
-      combinations.push(comb.slice(0, i) + "()" + comb.slize(i));
+      combinations.push(comb.slice(0, i) + "()" + comb.slice(i));
     }
   });
 
   return Array.from(new Set(combinations));
 };
+
+console.log(generateParenthesis(3));
