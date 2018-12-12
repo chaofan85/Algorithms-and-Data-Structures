@@ -5,15 +5,19 @@ class Node {
   }
 }
 
-function height(root) {
-  if (!root) return -1;
-  return 1 + Math.max(height(root.left), height(root.right));
+function isBalanced(root) {
+  return getDepth(root) !== -1;
 }
 
-function isBalanced(root) {
-  if (!root) return true;
-  let areGooeHeights = Math.abs(height(root.left) - height(root.right)) <= 1;
-  return areGooeHeights && isBalanced(root.left) && isBalanced(root.right);
+function getDepth(root) {
+  if (!root) return 0;
+
+  let left = getDepth(root.left);
+  if (left === -1) return -1;
+  let right = getDepth(root.right);
+  if (right === -1) return -1;
+
+  return Math.abs(left - right) > 1 ? -1 : Math.max(left, right) + 1;
 }
 
 let a = new Node("a");

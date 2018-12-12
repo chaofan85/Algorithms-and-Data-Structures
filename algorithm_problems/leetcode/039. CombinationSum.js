@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/combination-sum/description/
+
 var combinationSum = function(candidates, target) {
   if (target === 0) {
     return [[]];
@@ -56,7 +58,6 @@ function getCombs(candidates, target, result, comb, begin) {
     return;
   }
   for (let i = begin; i < candidates.length && target >= candidates[i]; i++) {
-    console.log(target, candidates[i]);
     comb.push(candidates[i]);
     getCombs(candidates, target - candidates[i], result, comb, i);
     comb.pop();
