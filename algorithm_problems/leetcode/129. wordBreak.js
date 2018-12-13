@@ -17,7 +17,6 @@ var wordBreak = function(s, wordDict) {
     let sub = "";
     for (let j = markers[i] + 1; j < s.length; j++) {
       sub += s[j];
-      console.log(sub, s[j]);
       if (dict.has(sub)) {
         if (count[j]) break;
         count[j]++;
@@ -26,7 +25,6 @@ var wordBreak = function(s, wordDict) {
     }
   }
 
-  console.log(count);
   return count[s.length - 1] > 0;
 };
 

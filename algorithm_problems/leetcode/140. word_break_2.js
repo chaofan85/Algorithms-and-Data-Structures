@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/word-break-ii/description/
+// https://leetcode.com/problems/word-break-ii/description/
 
 var wordBreak = function(s, wordDict) {
   if (s === null || s.length === 0) return [];
