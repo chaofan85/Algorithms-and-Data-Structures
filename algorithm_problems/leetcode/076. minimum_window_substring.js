@@ -1,4 +1,6 @@
 /*
+https://leetcode.com/problems/minimum-window-substring/description/
+
 Given a string S and a string T, find the minimum window in S which will
 contain all the characters in T in complexity O(n).
 
@@ -62,4 +64,4 @@ var minWindow = function(s, t) {
   return s.substring(start, end + 1);
 };
 
-console.log(minWindow("bbaa", "aba"));
+console.log(minWindow("bacbababbadbccb", "bcbd"));

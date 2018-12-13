@@ -39,8 +39,7 @@ var maxSlidingWindow = function(nums, k) {
   return result;
 };
 
-console
-  .log
-  // maxSlidingWindow([1, -1, 1, 3, 5, 1, 2, 3, 1, 5, -2, -1, -5, -2], 4)
-  ();
+console.log(
+  maxSlidingWindow([1, -1, 1, 3, 5, 1, 2, 3, 1, 5, -2, -1, -5, -2], 4)
+);
 console.log(maxSlidingWindow([9, 10, 9, -7, -4, -8, 2, -6], 5));

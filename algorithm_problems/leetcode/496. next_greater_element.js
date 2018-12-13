@@ -20,10 +20,8 @@ var nextGreaterElement = function(nums1, nums2) {
     result.push(hashmap[nums1[i]] ? hashmap[nums1[i]] : -1);
   }
 
-  console.log(hashmap);
-
   return result;
 };
 
-// console.log(nextGreaterElement([4, 1, 2], [1, 3, 4, 2]));
+console.log(nextGreaterElement([4, 1, 2], [1, 3, 4, 2]));
 console.log(nextGreaterElement([1, 3, 5, 2, 4], [6, 4, 5, 3, 1, 2]));

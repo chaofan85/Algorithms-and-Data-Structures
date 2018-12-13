@@ -6,7 +6,6 @@ var canPartition = function(nums) {
 
   if (sum % 2 !== 0) return false;
   if (nums.includes(sum / 2)) return true;
-  let copy = nums.slice(0);
 
   nums = nums.sort((a, b) => a - b);
 

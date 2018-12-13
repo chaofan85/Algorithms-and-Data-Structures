@@ -1,4 +1,6 @@
 /*
+https://leetcode.com/problems/palindrome-partitioning-ii/description/
+
 Given a string s, partition s such that every substring of the
 partition is a palindrome.
 
@@ -76,7 +78,6 @@ function minCut2(s) {
       j++ // odd length palindrome
     ) {
       cuts[i + j + 1] = Math.min(cuts[i + j + 1], 1 + cuts[i - j]);
-      console.log(cuts, i, j);
     }
 
     for (
@@ -87,7 +88,6 @@ function minCut2(s) {
       cuts[i + j + 1] = Math.min(cuts[i + j + 1], 1 + cuts[i - j + 1]);
     }
   }
-  console.log(cuts);
   return cuts[n];
 }
 

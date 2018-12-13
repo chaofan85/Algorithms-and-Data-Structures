@@ -32,11 +32,9 @@ function minCostClimbingStairs1(cost) {
 
 function helper(nums, i, memo) {
   if (i < 0) return 0;
-  // if (i < 0) return 0;
   if (memo[i]) return memo[i];
   let result =
     Math.min(helper(nums, i - 1, memo), helper(nums, i - 2, memo)) + nums[i];
-  // console.log(result);
   memo[i] = result;
   return result;
 }

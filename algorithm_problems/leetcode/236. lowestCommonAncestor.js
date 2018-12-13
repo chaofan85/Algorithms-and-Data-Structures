@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/
+
 function lowestCommonAncestor(root, p, q) {
   if (!root) return new Set();
 
@@ -36,4 +38,13 @@ function coverNode(root, node) {
   if (right) return true;
 
   return false;
+}
+
+//=================Another Solution===================
+
+function lowestCommonAncestor2(root, p, q) {
+  if (!root || root === p || root === q) return root;
+  var resL = lowestCommonAncestor(root.left, p, q);
+  var resR = lowestCommonAncestor(root.right, p, q);
+  return resL && resR ? root : resL || resR;
 }

@@ -20,9 +20,8 @@ var nextGreaterElements = function(nums) {
   for (let i = 0; i < nums.length; i++) {
     result.push(cache[i] !== undefined ? cache[i] : -1);
   }
-  console.log(cache, double);
   return result;
 };
 
 console.log(nextGreaterElements([-1, 0]));
-// console.log(nextGreaterElements([1, 3, 2, 4, 5, 3]));
+console.log(nextGreaterElements([1, 3, 2, 4, 5, 3]));

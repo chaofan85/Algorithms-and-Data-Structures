@@ -27,9 +27,6 @@ var maximalSquare = function(matrix) {
     arr[i].fill(0);
   }
 
-  
-  
-
   for (let i = 1; i <= rowLen; i++) {
     for (let j = 1; j <= colLen; j++) {
       if (matrix[i - 1][j - 1] === "1") {
@@ -37,13 +34,10 @@ var maximalSquare = function(matrix) {
           Math.min(Math.min(arr[i][j - 1], arr[i - 1][j]), arr[i - 1][j - 1]) +
           1;
         squareLen = Math.max(arr[i][j], squareLen);
-        console.log(squareLen);
       }
     }
   }
-  
-  // console.log(squareLen);
-  
+
   return squareLen * squareLen;
 };
 
