@@ -25,18 +25,4 @@ function shuffle(array) {
   return array;
 }
 
-pairs([
-  "Jonathan",
-  "Natalia",
-  "Stella",
-  "David",
-  "Donald",
-  "Kristin",
-  "Willson",
-  "Hana",
-  "Hilton",
-  "Eslinger",
-  "Samuel",
-  "Wei",
-  "Remy"
-]);
+pairs([]);
