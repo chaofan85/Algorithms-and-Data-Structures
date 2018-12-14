@@ -1,5 +1,7 @@
 // https://leetcode.com/problems/generate-parentheses/description/
 
+// Not efficient
+
 var generateParenthesis = function(n) {
   if (n === 1) return ["()"];
   if (n === 0) return [""];
