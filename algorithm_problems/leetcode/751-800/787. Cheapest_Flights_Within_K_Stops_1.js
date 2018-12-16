@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/cheapest-flights-within-k-stops/description/
 
+// Dynamic Programming
 var findCheapestPrice = function(n, flights, src, dst, K) {
   let list = getList(flights);
   let minPrice = Infinity;
