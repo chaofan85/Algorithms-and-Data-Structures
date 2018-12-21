@@ -20,6 +20,12 @@ Input:
 Output: []
 */
 
-var findSubstring = function (s, words) {
-  
-}
+var findSubstring = function(s, words) {
+  let result = [];
+
+  for (let i = 0; i < words[0].length; i++) {
+    for (let j = i; j < s.length; j += words[0].length) {
+      
+    }
+  }
+};
