@@ -4,7 +4,6 @@ var inorderTraversal = function(root) {
   let result = [];
   let stack = [];
   let temp = root;
-
   while (temp || stack.length) {
     while (temp) {
       stack.push(temp);
