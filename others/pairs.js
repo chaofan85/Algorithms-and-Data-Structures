@@ -25,4 +25,15 @@ function shuffle(array) {
   return array;
 }
 
-pairs([]);
+pairs([
+  "Matthew Radlow",
+  "Michael Ion",
+  "Benjamin Servodidio",
+  "Syd Ahmed",
+  "Laura Sacchetti",
+  "Jonathan Hakimian",
+  "Pierre Bollok",
+  "John Enokida",
+  "Jason Isler",
+  "Earl Sacks"
+]);
