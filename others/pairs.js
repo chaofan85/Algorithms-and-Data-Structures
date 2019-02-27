@@ -32,8 +32,6 @@ pairs([
   "Syd Ahmed",
   "Laura Sacchetti",
   "Jonathan Hakimian",
-  "Pierre Bollok",
   "John Enokida",
-  "Jason Isler",
-  "Earl Sacks"
+  "Umair Shabbir"
 ]);
