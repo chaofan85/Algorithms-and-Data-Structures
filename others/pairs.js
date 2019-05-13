@@ -9,7 +9,6 @@ function pairs(names) {
 
 function shuffle(array) {
   var currentIndex = array.length,
-    temporaryValue,
     randomIndex;
 
   while (0 !== currentIndex) {
@@ -26,12 +25,9 @@ function shuffle(array) {
 }
 
 pairs([
-  "Matthew Radlow",
-  "Michael Ion",
-  "Benjamin Servodidio",
-  "Syd Ahmed",
-  "Laura Sacchetti",
-  "Jonathan Hakimian",
-  "John Enokida",
-  "Umair Shabbir"
+  "name1",
+  "name2",
+  "name3",
+  "name4",
+  "..."
 ]);
